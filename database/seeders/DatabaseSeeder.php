@@ -1,23 +1,26 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Status;
+use App\Models\Approver;
+use App\Models\ApprovalStage;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Seed Status
+        $waiting = Status::create(['name' => 'Menunggu Persetujuan']);
+        $approved = Status::create(['name' => 'Disetujui']);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Seed Approvers
+        $ana = Approver::create(['name' => 'Ana']);
+        $ani = Approver::create(['name' => 'Ani']);
+        $ina = Approver::create(['name' => 'Ina']);
+
+        // Seed Approval Stages
+        ApprovalStage::create(['approver_id' => $ana->id]);
+        ApprovalStage::create(['approver_id' => $ani->id]);
+        ApprovalStage::create(['approver_id' => $ina->id]);
     }
 }
