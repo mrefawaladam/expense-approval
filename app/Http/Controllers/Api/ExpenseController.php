@@ -29,7 +29,7 @@ class ExpenseController extends Controller
         return response()->json([
             'success' => true,
             'data' => $this->expenseService->getAllExpenses()
-        ]);
+        ], 200);
     }
 
 
@@ -75,7 +75,7 @@ class ExpenseController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Pengeluaran berhasil diperbarui',
-            'data' => $expense
+            'data' => new ExpenseResource($expense)
         ]);
     }
 
